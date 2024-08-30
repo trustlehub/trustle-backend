@@ -1,0 +1,14 @@
+  {
+    "apps": [
+      {
+        "name": "trustle-backend",
+        "script": "index.js",
+        "env": {
+          "SECRET_KEY": "Trustle",
+          "MONGO_URL": "mongodb+srv://trustle:NifGZFVGkBBXKr4s@cluster0.sxcn3nh.mongodb.net",
+          "DB_NAME": "Trustle",
+          "PORT": "5000"
+        }
+      }
+    ]
+  }

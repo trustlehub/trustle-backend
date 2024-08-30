@@ -1,0 +1,247 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Trustle backend API",
+    "description": "API docs for Trustle API endpoints"
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/v1/users/signup": {
+      "post": {
+        "summary": "Register new user",
+        "description": "Handles user signup by checking if the same data already exist",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "John Smith"
+                },
+                "email": {
+                  "example": "myemail@example.com"
+                },
+                "password": {
+                  "example": "secretpwd"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Signup success"
+          },
+          "400": {
+            "description": "Failed to sign up"
+          },
+          "409": {
+            "description": "User already exists"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/users/login": {
+      "post": {
+        "summary":"User login",
+        "description": "Handles user login by validating provided credentials and generating a JWT token upon successful authentication.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "myemail@example.com"
+                },
+                "password": {
+                  "example": "secretpwd"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login success"
+          },
+          "403": {
+            "description": "Password incorrect"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/users/admin": {
+      "post": {
+        "summary": "Admin login",
+        "description": "Handles admin login router (for testing purpose only).",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "myemail@example.com"
+                },
+                "pwd": {
+                  "example": "secretpwd"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login success as admin"
+          },
+          "403": {
+            "description": "No permissions"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/profile/add": {
+      "post": {
+        "summary":"Add new profile ",
+        "description": "Handles route to add a new profile",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Failed to add"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/profile/search": {
+      "post": {
+        "summary":"Searhc profile with search parameters",
+        "description": "Handles route to search for profiles based on provided criteria",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "John Smith"
+                },
+                "favorite": {
+                  "example": "star"
+                },
+                "birthday": {
+                  "example": "1990-10-05"
+                },
+                "location": {
+                  "example": "Los Angeles, USA"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/profile/{id}": {
+      "get": {
+        "summary":"Get a profile with the specified id",
+        "description": "Handles route to retrieve a report by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/report/add": {
+      "post": {
+        "summary":"Add a new report issus",
+        "description": "Handles route to add a new report",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/report/{id}": {
+      "get": {
+        "summary":"Get a issues with specified id",
+        "description": "Handles route to retrieve a report by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Issue not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
